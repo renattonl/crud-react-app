@@ -28,13 +28,19 @@ export const helpHttp = () => {
       .then(res =>
         res.ok
           ? res.json()
-          : Promise.reject({
+          : {
               error: true,
               status: res.status || 500,
               message: res.statusText || 'Hubo un problema',
-            })
+            }
       )
-      .catch(error => error);
+      .catch(error => {
+        return {
+          error: true,
+          status: 500,
+          message: error.message,
+        };
+      });
   };
 
   const get = (url: string, options = {}) => _fetch(url, options);

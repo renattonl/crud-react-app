@@ -16,10 +16,11 @@ export const useFetchPromedio = () => {
     helpHttp()
       .get(`${import.meta.env.VITE_APP_URL_API}/clientes/promedio/edades`)
       .then(res => {
+        console.log(res);
         if (res.error) {
           setData({ loading: false, promedio: 0, error: res });
         } else {
-          setData({ loading: false, promedio: res.promedio, error: null });
+          setData({ loading: false, promedio: res.promedio ?? 0, error: null });
         }
       });
     setData(data => ({ ...data, loading: false }));

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { helpHttp } from '../../../helpers/helpHttp';
 import { DataTableType } from '../types/DataTableType';
 
@@ -17,7 +17,7 @@ export const useFetchClientes = () => {
         if (res.error) {
           setData({ loading: false, rows: [], error: res });
         } else {
-          setData({ loading: false, rows: res, error: null });
+          setData({ loading: false, rows: res ?? [], error: null });
         }
       });
     setData(data => ({ ...data, loading: false }));
